@@ -4,8 +4,8 @@
 <!--      <v-toolbar-side-icon></v-toolbar-side-icon> -->
       <v-app-bar-nav-icon class="grey--text" @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="grey--text">
-        <span class="font-weight-light">Todo</span>
-        <span>Ninja</span>
+        <span class="font-weight-light">Site</span>
+        <span>Title</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -54,9 +54,8 @@ export default {
   data: () => ({
     drawer: false,
     links: [
-      { icon: 'dashboard', text: 'Dashboard', route: '/'},
-      { icon: 'folder', text: 'My Projects', route: '/projects'},
-      { icon: 'person', text: 'Team', route: '/team'},
+      { icon: 'home', text: 'Home', route: '/'},
+      { icon: 'contacts', text: 'About', route: '/about'},
     ]
   }),
 }
