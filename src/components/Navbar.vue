@@ -10,7 +10,7 @@
       <v-spacer></v-spacer>
 
       <!-- dropdown menu -->
-      <v-menu offset-y>
+      <v-menu offset-y class="hidden-xs-only">
         <template v-slot:activator="{ on }">
         <!-- <v-btn text slot="activator"> -->
         <v-btn text v-on="on">
