@@ -10,7 +10,8 @@
       <v-spacer></v-spacer>
 
       <!-- dropdown menu -->
-      <v-menu offset-y class="hidden-sm-and-down">
+      <v-toolbar-item class="hidden-sm-and-down">
+      <v-menu offset-y>
         <template v-slot:activator="{ on }">
         <!-- <v-btn text slot="activator"> -->
         <v-btn text v-on="on">
@@ -25,6 +26,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
+      </v-toolbar-item>
 
       <v-btn text>
         <span>Sign Out</span>
