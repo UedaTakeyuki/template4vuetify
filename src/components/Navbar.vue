@@ -38,6 +38,14 @@
 
     <v-navigation-drawer v-model="drawer" app class="primary">
       <v-list>
+        <v-layout column align-center class="white--text">
+          QR code of this app.
+          <v-flex>
+            <v-avatar tile="true" size="100">
+              <img :src="grgenerator" alt="" title="" />
+            </v-avatar>
+          </v-flex>
+        </v-layout>
         <!-- v-list-tile is changed to v-list-item -->
         <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
           <v-list-item-action>
@@ -54,13 +62,18 @@
 
 
 <script>
+import router from '../router'
 export default {
   data: () => ({
     drawer: false,
     links: [
       { icon: 'home', text: 'Home', route: '/'},
       { icon: 'contacts', text: 'About', route: '/about'},
-    ]
+    ],
+    // http://goqr.me/api/doc/create-qr-code/#param_data
+    grgenerator: "https://api.qrserver.com/v1/create-qr-code/?data="
+     + location.origin + router.currentRoute.fullPath
+     + " &amp;size=100x100",
   }),
 }
 </script>
