@@ -27,3 +27,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### branch
+- v01: simple app
+- v02: with Toolbar, Navigation Drawers, Nemus
+- v03: + with QR code
