@@ -65,9 +65,11 @@ function set_userinfo(user){
 }
 
 //next.addEventListener('click', () => { // for non ES6 browser like Safari9
+/*
 next.addEventListener('click', function() {
   window.location.href = 'index.php';
 });
+*/
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
