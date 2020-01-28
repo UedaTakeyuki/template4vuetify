@@ -10,6 +10,7 @@
 
 import firebase from 'firebase'
 import firebaseui from 'firebaseui'
+import 'firebaseui/dist/firebaseui.css'
 
 /*
 var login_id = document.getElementById('login_id');
