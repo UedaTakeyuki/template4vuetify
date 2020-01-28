@@ -27,6 +27,7 @@ function logout() {
     window.location.href = 'index.php';
   }).catch(function(error) {
   // An error happened.
+    console.log(error);
   });
 };
 
@@ -37,6 +38,7 @@ function delete_user() {
     var param = {idToken: idToken};
     $.post("postDeleteUser.php", param,
       function(data){
+        console.log(data);
 
     });
     firebase.auth().currentUser.delete().catch(function(error) {
@@ -55,9 +57,11 @@ function delete_user() {
 };
 
 function set_userinfo(user){
+/*
   change_username.current_username = user.displayName;
   nav_menu.displayName = user.displayName;
   change_emailaddress.current_emailaddress = user.email;
+  */
 }
 
 //next.addEventListener('click', () => { // for non ES6 browser like Safari9
@@ -87,9 +91,11 @@ var actionCodeSettings = {
 //firebase.auth().onAuthStateChanged(user => { // for non ES6 browser like Safari9
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+/*
     if (user.email == "hba01111@nifty.com"){
       AccountDialog.showModal();
     }
+*/
     if (firebase.auth().currentUser.emailVerified){
 //    if (true){
       $('.in_login').show();
