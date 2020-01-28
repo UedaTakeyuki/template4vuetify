@@ -6,9 +6,9 @@ import firebase from 'firebase'
 import './fbmain'
 
 Vue.config.productionTip = false;
-console.log(process.env.VUE_APP_AHO);
-console.log(process.env.AHO);
-Vue.prototype.$aho = process.env.VUE_APP_AHO;
+//console.log(process.env.VUE_APP_AHO);
+//console.log(process.env.AHO);
+//Vue.prototype.$aho = process.env.VUE_APP_AHO;
 
 var config = {
     apiKey: process.env.VUE_APP_apiKey,

@@ -7,9 +7,9 @@
   * 
  * @see http://usejsdoc.org/
  */
-'use strict';
 
 import firebase from 'firebase'
+import firebaseui from 'firebaseui'
 
 /*
 var login_id = document.getElementById('login_id');
@@ -21,25 +21,26 @@ var lastPicFileName;
 */
 
 //logout
-function logout() {
+export function logout() {
   firebase.auth().signOut().then(function() {
     // Sign-out successful.
     window.location.href = 'index.php';
-  }).catch(function(error) {
-  // An error happened.
-    console.log(error);
+//  }).catch(function(error) {
+  }).catch(function() {
+    // An error happened.
+//    console.log(error);
   });
-};
+}
 
-function delete_user() {
-  firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+/*
+export function delete_user() {
+  firebase.auth().currentUser.getIdToken(/* forceRefresh */ /* true).then(function(idToken) {
     // Send token to your backend via HTTPS
     // ...
     var param = {idToken: idToken};
     $.post("postDeleteUser.php", param,
       function(data){
         console.log(data);
-
     });
     firebase.auth().currentUser.delete().catch(function(error) {
       if (error.code == 'auth/requires-recent-login') {
@@ -52,17 +53,18 @@ function delete_user() {
           }, 1);
         });
       }
-    });;
+    });
   });
-};
+}
+*/
 
-function set_userinfo(user){
 /*
+function set_userinfo(user){
   change_username.current_username = user.displayName;
   nav_menu.displayName = user.displayName;
   change_emailaddress.current_emailaddress = user.email;
-  */
 }
+*/
 
 //next.addEventListener('click', () => { // for non ES6 browser like Safari9
 /*
@@ -72,11 +74,11 @@ next.addEventListener('click', function() {
 */
 
 // Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+export var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 
 // ACS for sendEmailVerification() 
-var actionCodeSettings = {
+export var actionCodeSettings = {
 //  url: 'https://www.example.com/?email=' + firebase.auth().currentUser.email,
   url: location.href,
 /*  iOS: {
@@ -100,28 +102,37 @@ firebase.auth().onAuthStateChanged(function(user) {
 */
     if (firebase.auth().currentUser.emailVerified){
 //    if (true){
+      /*
       $('.in_login').show();
       console.log(`Logged in as: ${user.uid}`);
       set_userinfo(user);
       show_elements(user);
+      */
 //      window.location.href = 'login_success.php';
     } else {
+      /*
       $('.in_login').hide();
       actionElement.style.display = 'block';
+      */
     }
   } else {
+    /*
     $('.in_login').hide();
+    */
     ui.start('#firebaseui-auth-container', {
       callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+//        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        signInSuccessWithAuthResult: function() {
           // User successfully signed in.
           // Return type determines whether we continue the redirect automatically
           // or whether we leave that to developer to handle.
           if (!firebase.auth().currentUser.emailVerified){
 //            firebase.auth().currentUser.sendEmailVerification();
             firebase.auth().currentUser.sendEmailVerification(actionCodeSettings);
+            /*
             actionElement.style.display = 'block';
             login_id.innerHTML = "";
+            */
             return false;
           }
           return true;
@@ -129,7 +140,9 @@ firebase.auth().onAuthStateChanged(function(user) {
         uiShown: function() {
           // The widget is rendered.
           // Hide the loader.
+          /*
           loader.style.display = 'none';
+          */
         }
       },
       signInOptions: [
@@ -142,7 +155,5 @@ firebase.auth().onAuthStateChanged(function(user) {
       // Other config options...
     });
   }
-  console.log('Nobody is logged in');
+//  console.log('Nobody is logged in');
 });
-
-export default fbmain;
