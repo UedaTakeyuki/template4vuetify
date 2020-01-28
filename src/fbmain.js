@@ -9,8 +9,8 @@
  */
 
 import firebase from 'firebase'
-import firebaseui from 'firebaseui'
-import 'firebaseui/dist/firebaseui.css'
+//import firebaseui from 'firebaseui'
+//import 'firebaseui/dist/firebaseui.css'
 
 /*
 var login_id = document.getElementById('login_id');
@@ -75,7 +75,7 @@ next.addEventListener('click', function() {
 */
 
 // Initialize the FirebaseUI Widget using Firebase.
-export var ui = new firebaseui.auth.AuthUI(firebase.auth());
+//export var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 
 // ACS for sendEmailVerification() 
@@ -93,68 +93,3 @@ export var actionCodeSettings = {
   handleCodeInApp: true
 };
 
-//firebase.auth().onAuthStateChanged(user => { // for non ES6 browser like Safari9
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-/*
-    if (user.email == "hba01111@nifty.com"){
-      AccountDialog.showModal();
-    }
-*/
-    if (firebase.auth().currentUser.emailVerified){
-//    if (true){
-      /*
-      $('.in_login').show();
-      console.log(`Logged in as: ${user.uid}`);
-      set_userinfo(user);
-      show_elements(user);
-      */
-//      window.location.href = 'login_success.php';
-    } else {
-      /*
-      $('.in_login').hide();
-      actionElement.style.display = 'block';
-      */
-    }
-  } else {
-    /*
-    $('.in_login').hide();
-    */
-    ui.start('#firebaseui-auth-container', {
-      callbacks: {
-//        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        signInSuccessWithAuthResult: function() {
-          // User successfully signed in.
-          // Return type determines whether we continue the redirect automatically
-          // or whether we leave that to developer to handle.
-          if (!firebase.auth().currentUser.emailVerified){
-//            firebase.auth().currentUser.sendEmailVerification();
-            firebase.auth().currentUser.sendEmailVerification(actionCodeSettings);
-            /*
-            actionElement.style.display = 'block';
-            login_id.innerHTML = "";
-            */
-            return false;
-          }
-          return true;
-        },
-        uiShown: function() {
-          // The widget is rendered.
-          // Hide the loader.
-          /*
-          loader.style.display = 'none';
-          */
-        }
-      },
-      signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-      ],
-      tosUrl: 'https://monitor.uedasoft.com/tos.html',
-      privacyPolicyUrl: 'https://monitor.uedasoft.com/privacy.html',
-      signInSuccessUrl: 'index.mdl.php',
-      credentialHelper: firebaseui.auth.CredentialHelper.NONE
-      // Other config options...
-    });
-  }
-//  console.log('Nobody is logged in');
-});
